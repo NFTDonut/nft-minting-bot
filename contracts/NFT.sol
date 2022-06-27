@@ -9,16 +9,8 @@ import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
-
-//import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
-//import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
-//import "@openzeppelin/contracts/utils/Strings.sol";
-//import "@openzeppelin/contracts/utils/Address.sol";
-//import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
-//import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
-//import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -28,7 +20,7 @@ contract NFT is ERC721Enumerable, Ownable {
 
     string baseURI;
     string public baseExtension = ".json";
-    uint256 public cost = 1 ether;
+    uint256 public cost = 0.0001 ether;
     uint256 public maxSupply = 20;
 
     constructor(
@@ -53,7 +45,6 @@ contract NFT is ERC721Enumerable, Ownable {
             require(msg.value >= mintAmount*cost);
         }
 
-        // _safeMint(msg.sender, supply + 1);
         for (uint256 i = 1; i <= mintAmount; i++) {
             _safeMint(msg.sender, supply + i);
         }

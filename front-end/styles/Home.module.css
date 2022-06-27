@@ -1,0 +1,73 @@
+.nav {
+    top: 0px;
+    position: fixed;
+    display: flex;
+    height: 80px;
+    width: 100%;
+    align-items: center;
+    padding: 0px 20px;
+    justify-content: space-between;
+    background: linear-gradient(0deg, #6200EE, #3700B3);
+    color: white;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav .btn {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 1px;
+    width: 160px;
+    height: 50px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.nav .btn:hover {
+    transform: scale(1.05);
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - 80px);
+    margin-top: 80px;
+}
+
+.card {
+    display: flex;
+    flex-flow: column;
+    height: 80%;
+    width: 400px;
+    box-shadow: -1px -2px 10px rgba(255, 255, 255, 0.5), 1px 2px 10px rgba(0, 0, 0, 0.2), 
+                inset -1px -2px 10px rgba(0, 0, 0, 0.2), inset 1px 2px 10px rgba(255, 255, 255, 1);
+    border-radius: 30px;
+    margin: auto;
+    padding-top: 100px;
+    
+}
+
+.card .btn {
+    background: linear-gradient(0deg, #6200EE, #3700B3);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    width: 160px;
+    height: 50px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+    cursor: pointer;
+    margin: auto auto 40px auto;
+    vertical-align: bottom;
+    letter-spacing: 1px;
+}
+
+.card .btn:hover {
+    transform: scale(1.05);
+}
+

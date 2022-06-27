@@ -31,14 +31,6 @@ async function main() {
   // get test accounts
   const [owner, minter1, minter2] = await hre.ethers.getSigners();
 
-  const IPFS_IMAGE_METADATA_URI = `ipfs://QmQdPYTY8yArgVmMJK319e75rsi91bwtUF5JsSF9CLnEYe/`
-
-  // get contract to deploy and deploy
-  const NFT = await hre.ethers.getContractFactory("NFT");
-  const nft = await NFT.deploy("Famous Paintings", "PAINT", IPFS_IMAGE_METADATA_URI);
-  await nft.deployed();
-  console.log("NFT Contract deployed to ", nft.address);
-
   // check account balances
   const addresses = [owner.address, minter1.address, nft.address];
   console.log("== start ==");
@@ -54,7 +46,8 @@ async function main() {
 
   tx = {
     from: addresses[0],
-    value: (ethers.utils.parseUnits("1", "ether"))
+    value: (ethers.utils.parseUnits("1", "ether")),
+    gasLimit: gasLimit
   }
 
   await nft.mint(mintAmount, tx);
