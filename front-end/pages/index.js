@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import { ethers } from "ethers";
+import abi from '../utils/NFT.json';
+import { ContractFactory, ethers } from "ethers";
 import React, { useState } from 'react';
 import Image from 'next/image'
 import Card from '../components/Card'
@@ -9,6 +10,10 @@ import Navbar from '../components/Navbar'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+
+  const IPFS_IMAGE_METADATA_URI = `ipfs://QmQdPYTY8yArgVmMJK319e75rsi91bwtUF5JsSF9CLnEYe/`
+  const contractABI = abi.abi;
+  const contractBytecode = abi.bytecode;
 
   const connectWallet = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
@@ -27,6 +32,25 @@ export default function Home() {
     return shortenedAddress;
   }
 
+  async function deploy() {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+        const signer = provider.getSigner();
+        // get contract to deploy and deploy
+        // const NFT = await hre.ethers.getContractFactory("NFT");
+        let NFT = new ContractFactory(contractABI, contractBytecode, signer);
+        const nft = await NFT.deploy("Famous Paintings", "PAINT", IPFS_IMAGE_METADATA_URI);
+        await nft.deployed();
+        console.log("NFT Contract deployed to ", nft.address);
+        document.getElementById("contractAddress").innerHTML = nft.address;
+      }
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -35,7 +59,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar connectWallet={connectWallet}/>
-      <DeployCard />
+      <DeployCard deploy={deploy}/>
       <Card />
       <MintStateCard />
 

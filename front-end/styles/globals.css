@@ -19,6 +19,24 @@ h1 {
   letter-spacing: 1px;
 }
 
+h3 {
+  color: #3700B3;
+  font-size: 24px;
+  margin: 0 auto auto auto;
+  padding: 0;
+  text-align: center;
+  vertical-align: top;
+}
+
+p {
+  color: black;
+  font-size: 16px;
+  margin: 20px auto;
+  padding: 0;
+  text-align: center;
+  vertical-align: top;
+}
+
 input {
   border-radius: 30px;
   text-align: center;
