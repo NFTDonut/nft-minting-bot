@@ -15,6 +15,8 @@ export default function Home() {
   const contractABI = abi.abi;
   const contractBytecode = abi.bytecode;
 
+  // let contractAddress = '0xEF14116F2A56B92Fb7826cDD79470506d5567365';
+
   const connectWallet = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
     // Prompt user for account connections
@@ -23,6 +25,10 @@ export default function Home() {
     let connectedAddress = await signer.getAddress();
     console.log("Account:", connectedAddress);
     document.getElementById("walletButton").innerHTML = shortenAddress(connectedAddress);
+
+    // display mintActive state from contract
+    const nft = new ethers.Contract('0xEF14116F2A56B92Fb7826cDD79470506d5567365', contractABI, signer);
+    document.getElementById("mintActive").innerHTML = await nft.mintActive();
   }
 
   function shortenAddress(connectedAddress) {
@@ -42,12 +48,46 @@ export default function Home() {
         let NFT = new ContractFactory(contractABI, contractBytecode, signer);
         const nft = await NFT.deploy("Famous Paintings", "PAINT", IPFS_IMAGE_METADATA_URI);
         await nft.deployed();
-        console.log("NFT Contract deployed to ", nft.address);
-        document.getElementById("contractAddress").innerHTML = nft.address;
+        contractAddress = nft.address;
+        console.log("NFT Contract deployed to ", contractAddress);
+        document.getElementById("contractAddress").innerHTML = contractAddress;
+        return contractAddress;
+        // document.getElementById("mintActive").innerHTML = nft.mintActive;
       }
     }
     catch (error) {
       console.log(error);
+    }
+  }
+
+  async function toggleMintActive() {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+        const signer = provider.getSigner();
+        const nft = new ethers.Contract('0xEF14116F2A56B92Fb7826cDD79470506d5567365', contractABI, signer);
+        if (await nft.mintActive() === true) {
+          await nft.setMintActive(false);
+          while (await nft.mintActive() === true) {
+            document.getElementById("mintActive").innerHTML = "waiting...";
+          }
+          document.getElementById("mintActive").innerHTML = await nft.mintActive();
+        }
+        else if (await nft.mintActive() === false) {
+          await nft.setMintActive(true);
+          while (await nft.mintActive() === false) {
+            document.getElementById("mintActive").innerHTML = "waiting...";
+          }
+          document.getElementById("mintActive").innerHTML = await nft.mintActive();
+        }
+        else {
+          console.log("Cannot read mintActive from smart contract.");
+        }
+        document.getElementById("mintActive").innerHTML = await nft.mintActive();
+      }
+    } 
+    catch (error) {
+        console.log(error);
     }
   }
 
@@ -61,7 +101,7 @@ export default function Home() {
       <Navbar connectWallet={connectWallet}/>
       <DeployCard deploy={deploy}/>
       <Card />
-      <MintStateCard />
+      <MintStateCard toggleMintActive={toggleMintActive}/>
 
     </div>
   )
