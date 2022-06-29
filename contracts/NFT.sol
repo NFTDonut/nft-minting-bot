@@ -22,6 +22,7 @@ contract NFT is ERC721Enumerable, Ownable {
     string public baseExtension = ".json";
     uint256 public cost = 0.0001 ether;
     uint256 public maxSupply = 20;
+    bool public mintActive = false;
 
     constructor(
         string memory _name,
@@ -39,15 +40,17 @@ contract NFT is ERC721Enumerable, Ownable {
     // public
     function mint(uint256 mintAmount) public payable {
         uint256 supply = totalSupply();
+        require(mintActive, "Mint is not active.");
         require(supply <= maxSupply, "All NFTs have been minted.");
-
-        if (msg.sender != owner()) {
-            require(msg.value >= mintAmount*cost);
-        }
+        require(msg.value >= mintAmount*cost);
 
         for (uint256 i = 1; i <= mintAmount; i++) {
             _safeMint(msg.sender, supply + i);
         }
+    }
+
+    function setMintActive(bool _val) external onlyOwner {
+        mintActive = _val;
     }
 
     function walletOfOwner(address _owner)

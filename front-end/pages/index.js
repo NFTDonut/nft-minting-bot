@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Card from '../components/Card'
+import DeployCard from '../components/DeployCard'
+import MintStateCard from '../components/MintStateCard'
 import Navbar from '../components/Navbar'
 import styles from '../styles/Home.module.css'
 
@@ -13,7 +15,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
+      <DeployCard />
       <Card />
+      <MintStateCard />
 
     </div>
   )
