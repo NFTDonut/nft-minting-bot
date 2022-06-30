@@ -3,6 +3,7 @@ import abi from '../utils/NFT.json';
 import { ContractFactory, ethers } from "ethers";
 import React, { useState } from 'react';
 import Image from 'next/image'
+import Instructions from '../components/Instructions';
 import Card from '../components/Card'
 import DeployCard from '../components/DeployCard'
 import MintStateCard from '../components/MintStateCard'
@@ -60,6 +61,102 @@ export default function Home() {
     }
   }
 
+  async function scanMint() {
+    // set initial inputs to bad
+    let addressInputGood = false;
+    let quantityInputGood = false;
+    let costInputGood = false;
+    let gasInputGood = false;
+
+    // if any input is bad, require new inputs
+    if (addressInputGood === false || quantityInputGood === false || costInputGood === false || gasInputGood === false) {
+      document.getElementById("contractError").innerHTML = "";
+      document.getElementById("quantityError").innerHTML = "";
+      document.getElementById("costError").innerHTML = "";
+      document.getElementById("gasError").innerHTML = "";
+      let contractAddressInput = document.getElementById("contractAddressInput").value;
+      let quantityInput = document.getElementById("quantityInput").value;
+      let costInput = document.getElementById("costInput").value;
+      let gasInput = document.getElementById("gasInput").value;
+      if (contractAddressInput.length != 42 || contractAddressInput.substring(0, 2) != "0x") {
+        console.log("Please input a contract address.");
+        document.getElementById("contractError").innerHTML = "Please input a contract address.";
+      }
+      else {
+        let addressInputGood = true;
+
+        if (quantityInput <= 0) {
+          console.log("Please enter a positive integer.");
+          document.getElementById("quantityError").innerHTML = "Please enter a positive integer.";
+        }
+        else {
+          let quantityInputGood = true;
+
+          if (costInput <= 0) {
+            console.log("Please enter a value greater than 0.");
+            document.getElementById("costError").innerHTML = "Please enter a value greater than 0.";
+          }
+          else {
+            let costInputGood = true;
+
+            if (gasInput < 21000) {
+              console.log("Please enter at least 21000.");
+              document.getElementById("gasError").innerHTML = "Please enter at least 21000.";
+            }
+            else {
+              let gasInputGood = true;
+
+              // if all inputs are good, run mint logic
+              if (addressInputGood === true && quantityInputGood === true && costInputGood === true && gasInputGood === true) {
+                document.getElementById("scanButton").innerHTML = "SCANNING...";
+
+                if (window.ethereum) {
+                  const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+                  const signer = provider.getSigner();
+                  const nft = new ethers.Contract(contractAddressInput, contractABI, signer);
+
+                  // if mintActive is true, mint right away
+                  if (await nft.mintActive() === true) {
+                    console.log("mintActive is already true");
+
+                    // assign inputs to transaction and mint
+                    let tx = {
+                      from: signer.address,
+                      value: (ethers.utils.parseUnits(costInput.toString(), "ether")),
+                      gasLimit: gasInput
+                    }
+                    await nft.mint(quantityInput, tx);
+                  }
+                  // if mintActive is false, wait until true, then mint.
+                  else if (await nft.mintActive() === false) {
+                    while (await nft.mintActive() === false) {
+                      console.log("waiting for mintActive to be true...");
+                    }
+                    console.log("mintActive is TRUE!");
+                    // assign inputs to transaction and mint
+                    let tx = {
+                      from: signer.address,
+                      value: (ethers.utils.parseUnits(costInput.toString(), "ether")),
+                      gasLimit: gasInput
+                    }
+                    await nft.mint(quantityInput, tx);
+                  }
+                  else {
+                    console.log("Can't access mintActive from contract");
+                  }
+                }
+              }
+              else {
+                console.log("Bad Inputs.");
+              }
+            }
+          }
+        }
+      }
+    }
+    document.getElementById("scanButton").innerHTML = "SCAN";
+  }
+
   async function toggleMintActive() {
     try {
       if (window.ethereum) {
@@ -99,10 +196,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar connectWallet={connectWallet}/>
-      <DeployCard deploy={deploy}/>
-      <Card />
-      <MintStateCard toggleMintActive={toggleMintActive}/>
-
+      <div className={styles.column}>
+        <Instructions />
+      </div>
+      <div className={styles.column}>
+        <DeployCard deploy={deploy}/>
+        <MintStateCard toggleMintActive={toggleMintActive}/>
+      </div>
+      <div className={styles.column}>
+        <Card scanMint={scanMint}/>
+      </div>
     </div>
   )
 }

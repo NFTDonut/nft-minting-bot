@@ -42,20 +42,66 @@
 .container {
     display: flex;
     height: calc(100vh - 80px);
-    margin-top: 80px;
     flex-wrap: wrap;
+}
+
+.column {
+    display: flex;
+    height: calc(100vh - 80px);
+    width: 33%;
+    min-width: 400px;
+    margin: 80px auto auto auto;
+    flex-wrap: wrap;
+}
+
+.instructions {
+    display: flex;
+    flex-flow: column;
+    height: 500px;
+    width: 400px;
+    box-shadow: -1px -2px 10px rgba(255, 255, 255, 0.5), 1px 2px 10px rgba(0, 0, 0, 0.2), 
+                inset -1px -2px 10px rgba(0, 0, 0, 0.2), inset 1px 2px 10px rgba(255, 255, 255, 1);
+    border-radius: 30px;
+    margin: 60px auto;
+    padding-top: 40px;
+}
+
+.instructions .btn {
+    background-color: rgb(232, 232, 232);
+    color: #3700B3;
+    font-weight: bolder;
+    font-size: 16px;
+    width: 160px;
+    height: 50px;
+    border-radius: 30px;
+    border: none;
+    transition: 0.3s;
+    cursor: pointer;
+    margin: auto auto 40px auto;
+    vertical-align: bottom;
+    letter-spacing: 1px;
+    box-shadow: -0px -2px 10px rgba(255, 255, 255, 0.5), 0px 2px 10px rgba(0, 0, 0, 0.2), 
+                inset -0px -2px 6px rgba(0, 0, 0, 0.2), inset 0px 2px 6px rgba(255, 255, 255, 1);
+}
+
+.instructions .btn:active {
+    box-shadow: inset -0px -2px 8px rgba(255, 255, 255, 1), inset 0px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.instructions .btn:hover {
+    background-color: white;
 }
 
 .deploy {
     display: flex;
     flex-flow: column;
-    height: 260px;
+    height: 240px;
     width: 400px;
     box-shadow: -1px -2px 10px rgba(255, 255, 255, 0.5), 1px 2px 10px rgba(0, 0, 0, 0.2), 
                 inset -1px -2px 10px rgba(0, 0, 0, 0.2), inset 1px 2px 10px rgba(255, 255, 255, 1);
     border-radius: 30px;
-    margin: auto;
     padding-top: 40px;
+    margin: 60px auto 0px auto;
 }
 
 .deploy .btn {
@@ -92,7 +138,7 @@
     box-shadow: -1px -2px 10px rgba(255, 255, 255, 0.5), 1px 2px 10px rgba(0, 0, 0, 0.2), 
                 inset -1px -2px 10px rgba(0, 0, 0, 0.2), inset 1px 2px 10px rgba(255, 255, 255, 1);
     border-radius: 30px;
-    margin: auto;
+    margin: 60px auto;
     padding-top: 40px;
 }
 
@@ -125,13 +171,13 @@
 .mintState {
     display: flex;
     flex-flow: column;
-    height: 260px;
+    height: 240px;
     width: 400px;
     box-shadow: -1px -2px 10px rgba(255, 255, 255, 0.5), 1px 2px 10px rgba(0, 0, 0, 0.2), 
                 inset -1px -2px 10px rgba(0, 0, 0, 0.2), inset 1px 2px 10px rgba(255, 255, 255, 1);
     border-radius: 30px;
-    margin: auto;
     padding-top: 40px;
+    margin: 20px auto 100% auto;
 }
 
 .mintState .btn {
@@ -160,3 +206,11 @@
     background-color: white;
 }
 
+.error {
+    color: red;
+    font-size: 14px;
+    margin: 4px auto auto auto;
+    padding: 0;
+    text-align: center;
+    vertical-align: top;
+}
