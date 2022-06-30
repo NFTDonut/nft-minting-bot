@@ -4,8 +4,8 @@ export default function DeployCard({deploy}) {
     return(
         <div className={styles.deploy}>
             <h3>NFT Contract Address:</h3>
-            <p id='contractAddress'>Contract address</p>
-            <button onClick={deploy} className={styles.btn}>DEPLOY</button>
+            <p id='contractAddress'></p>
+            <button id='deployButton' onClick={deploy} className={styles.btn}>DEPLOY</button>
         </div>
     );
 }

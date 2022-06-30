@@ -12,7 +12,7 @@ export default function Card({scanMint}) {
             <p id='costError' className={styles.error}></p>
             <input id='gasInput' type="number" placeholder='Gas Limit'></input>
             <p id='gasError' className={styles.error}></p>
-            <button id='scanButton' type='submit' onClick={scanMint} className={styles.btn}>SCAN</button>
+            <button id='scanButton' type='submit' onClick={scanMint} className={styles.btn}>MINT</button>
         </div>
     );
 }
