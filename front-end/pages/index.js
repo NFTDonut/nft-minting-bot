@@ -22,8 +22,6 @@ export default function Home() {
   const contractABI = abi.abi;
   const contractBytecode = abi.bytecode;
 
-  // let contractAddress = '0xEF14116F2A56B92Fb7826cDD79470506d5567365';
-
   // checks if wallet is connected
   async function checkConnection() {
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
