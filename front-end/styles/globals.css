@@ -52,3 +52,10 @@ input:focus {
   outline: none;
   box-shadow: inset -0px -1px 10px rgba(255, 255, 255, 1), inset 0px 1px 10px rgba(0, 0, 0, 0.5);
 }
+
+@media only screen and (max-width: 800px) {
+
+  h1 {
+    font-size: 20px;
+  }
+}
