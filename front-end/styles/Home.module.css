@@ -52,19 +52,23 @@
     min-width: 400px;
     margin: 80px auto auto auto;
     flex-wrap: wrap;
+    padding-bottom: 20px;
 }
 
 .instructions {
     display: flex;
     flex-flow: column;
-    height: 500px;
-    width: 400px;
-    box-shadow: -1px -2px 10px rgba(255, 255, 255, 0.5), 1px 2px 10px rgba(0, 0, 0, 0.2), 
-                inset -1px -2px 10px rgba(0, 0, 0, 0.2), inset 1px 2px 10px rgba(255, 255, 255, 1);
+    height: 80vh;
+    min-height: 500px;
+    width: 30vw;
+    min-width: 380px;
+    box-shadow: -2px -4px 6px rgba(255, 255, 255, 0.1), 2px 4px 6px rgba(0, 0, 0, 0.1),
+                inset -2px -4px 6px rgba(0, 0, 0, 0.1), inset 2px 4px 6px rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     margin: 60px auto;
     padding-top: 20px;
     padding-bottom: 40px;
+
 }
 
 .instructions h3 {
@@ -77,7 +81,7 @@
 }
 
 .instructions .btn {
-    background-color: rgb(232, 232, 232);
+    background-color: rgb(240, 240, 240);
     color: #3700B3;
     font-weight: bolder;
     font-size: 16px;
@@ -105,17 +109,19 @@
 .deploy {
     display: flex;
     flex-flow: column;
-    height: 240px;
-    width: 400px;
-    box-shadow: -1px -2px 10px rgba(255, 255, 255, 0.5), 1px 2px 10px rgba(0, 0, 0, 0.2), 
-                inset -1px -2px 10px rgba(0, 0, 0, 0.2), inset 1px 2px 10px rgba(255, 255, 255, 1);
+    height: calc(40vh - 10px);
+    min-height: 245px;
+    width: 30vw;
+    min-width: 380px;
+    box-shadow: -2px -4px 6px rgba(255, 255, 255, 0.1), 2px 4px 6px rgba(0, 0, 0, 0.1),
+                inset -2px -4px 6px rgba(0, 0, 0, 0.1), inset 2px 4px 6px rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     padding-top: 40px;
     margin: 60px auto 0px auto;
 }
 
 .deploy .btn {
-    background-color: rgb(232, 232, 232);
+    background-color: rgb(240, 240, 240);
     color: #3700B3;
     font-weight: bolder;
     font-size: 16px;
@@ -123,13 +129,13 @@
     height: 50px;
     border-radius: 30px;
     border: none;
-    transition: 0.3s;
+    transition: 0.3s ease-out;
     cursor: pointer;
     margin: auto auto 40px auto;
     vertical-align: bottom;
     letter-spacing: 1px;
-    box-shadow: -0px -2px 10px rgba(255, 255, 255, 0.5), 0px 2px 10px rgba(0, 0, 0, 0.2), 
-                inset -0px -2px 6px rgba(0, 0, 0, 0.2), inset 0px 2px 6px rgba(255, 255, 255, 1);
+    box-shadow: -2px -4px 6px rgba(255, 255, 255, 0.1), 2px 4px 6px rgba(0, 0, 0, 0.1),
+                inset -2px -4px 6px rgba(0, 0, 0, 0.1), inset 2px 4px 6px rgba(255, 255, 255, 0.1);
 }
 
 .deploy .btn:active {
@@ -137,23 +143,28 @@
 }
 
 .deploy .btn:hover {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: -2px -4px 6px rgba(255, 255, 255, 0.5), 2px 4px 10px rgba(0, 0, 0, 0.1),
+                inset -2px -4px 10px rgba(0, 0, 0, 0.1), inset 2px 4px 6px rgba(255, 255, 255, 0.1);
+    transform: scale(0.95, 1.05);
 }
 
 .card {
     display: flex;
     flex-flow: column;
-    height: 500px;
-    width: 400px;
-    box-shadow: -1px -2px 10px rgba(255, 255, 255, 0.5), 1px 2px 10px rgba(0, 0, 0, 0.2), 
-                inset -1px -2px 10px rgba(0, 0, 0, 0.2), inset 1px 2px 10px rgba(255, 255, 255, 1);
+    height: 80vh;
+    min-height: 500px;
+    width: 30vw;
+    min-width: 380px;
+    box-shadow: -2px -4px 6px rgba(255, 255, 255, 0.1), 2px 4px 6px rgba(0, 0, 0, 0.1),
+                inset -2px -4px 6px rgba(0, 0, 0, 0.1), inset 2px 4px 6px rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     margin: 60px auto;
     padding-top: 40px;
 }
 
 .card .btn {
-    background-color: rgb(232, 232, 232);
+    background-color: rgb(240, 240, 240);
     color: #3700B3;
     font-weight: bolder;
     font-size: 16px;
@@ -166,8 +177,8 @@
     margin: auto auto 40px auto;
     vertical-align: bottom;
     letter-spacing: 1px;
-    box-shadow: -0px -2px 10px rgba(255, 255, 255, 0.5), 0px 2px 10px rgba(0, 0, 0, 0.2), 
-                inset -0px -2px 6px rgba(0, 0, 0, 0.2), inset 0px 2px 6px rgba(255, 255, 255, 1);
+    box-shadow: -2px -4px 6px rgba(255, 255, 255, 0.1), 2px 4px 6px rgba(0, 0, 0, 0.1),
+                inset -2px -4px 6px rgba(0, 0, 0, 0.1), inset 2px 4px 6px rgba(255, 255, 255, 0.1);
 }
 
 .card .btn:active {
@@ -175,23 +186,28 @@
 }
 
 .card .btn:hover {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: -2px -4px 6px rgba(255, 255, 255, 0.5), 2px 4px 10px rgba(0, 0, 0, 0.1),
+                inset -2px -4px 10px rgba(0, 0, 0, 0.1), inset 2px 4px 6px rgba(255, 255, 255, 0.1);
+    transform: scale(0.95, 1.05);
 }
 
 .mintState {
     display: flex;
     flex-flow: column;
-    height: 240px;
-    width: 400px;
-    box-shadow: -1px -2px 10px rgba(255, 255, 255, 0.5), 1px 2px 10px rgba(0, 0, 0, 0.2), 
-                inset -1px -2px 10px rgba(0, 0, 0, 0.2), inset 1px 2px 10px rgba(255, 255, 255, 1);
+    height: calc(40vh - 10px);
+    min-height: 245px;
+    width: 30vw;
+    min-width: 380px;
+    box-shadow: -2px -4px 6px rgba(255, 255, 255, 0.1), 2px 4px 6px rgba(0, 0, 0, 0.1),
+                inset -2px -4px 6px rgba(0, 0, 0, 0.1), inset 2px 4px 6px rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     padding-top: 40px;
     margin: 20px auto 100% auto;
 }
 
 .mintState .btn {
-    background-color: rgb(232, 232, 232);
+    background-color: rgb(240, 240, 240);
     color: #3700B3;
     font-weight: bolder;
     font-size: 16px;
@@ -204,8 +220,8 @@
     margin: auto auto 40px auto;
     vertical-align: bottom;
     letter-spacing: 1px;
-    box-shadow: -0px -2px 10px rgba(255, 255, 255, 0.5), 0px 2px 10px rgba(0, 0, 0, 0.2), 
-                inset -0px -2px 6px rgba(0, 0, 0, 0.2), inset 0px 2px 6px rgba(255, 255, 255, 1);
+    box-shadow: -2px -4px 6px rgba(255, 255, 255, 0.1), 2px 4px 6px rgba(0, 0, 0, 0.1),
+                inset -2px -4px 6px rgba(0, 0, 0, 0.1), inset 2px 4px 6px rgba(255, 255, 255, 0.1);
 }
 
 .mintState .btn:active {
@@ -213,7 +229,10 @@
 }
 
 .mintState .btn:hover {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: -2px -4px 6px rgba(255, 255, 255, 0.5), 2px 4px 10px rgba(0, 0, 0, 0.1),
+                inset -2px -4px 10px rgba(0, 0, 0, 0.1), inset 2px 4px 6px rgba(255, 255, 255, 0.1);
+    transform: scale(0.95, 1.05);
 }
 
 .error {
@@ -224,3 +243,34 @@
     text-align: center;
     vertical-align: top;
 }
+
+
+@media only screen and (max-width: 1200px) {
+
+    .column {
+        width: 100%;
+        margin: auto;
+    }
+
+    .instructions {
+        margin-top: 100px;
+        width: 60%;
+        min-width: 380px;
+    }
+
+    .deploy {
+        width: 60%;
+        min-width: 380px;
+    }
+
+    .mintState {
+        width: 60%;
+        min-width: 380px;
+    }
+
+    .card {
+        width: 60%;
+        min-width: 380px;
+    }
+
+  }
